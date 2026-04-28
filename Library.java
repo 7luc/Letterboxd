@@ -2,15 +2,13 @@ package Letterboxd;
 
 public class Library {
     private int CCount;
-	private int UCount;
 	private Content[] contents;
-	private User[] users;
+	private UserLinkedList users;
 
 public Library(){
 	contents = new Content[20];
-	users = new User[20];
+	users = new UserLinkedList();
 	CCount = 0;
-	UCount = 0;
 }
 
 public void addContent(Content c){
@@ -40,16 +38,11 @@ private Content searchRecursive(String keyword, int index){
 }
 
 public void addUser(User u) {
-	users[UCount] = u;
-	UCount++;
-}
+	users.add(u);
+		}
 
 public User searchUser(String keyword){
-	for (int i =0;i<UCount;i++) {
-	    if (users[i].matches(keyword)){
-	        return users[i];
-	        }
-      }
-	        return null;
-	    }
+	   return users.search(keyword);
 	}
+
+}

@@ -1,5 +1,6 @@
 package Letterboxd;
-import java.util.Scanner;
+import java.util.*;
+import java.io.IOException;
 public class LetterboxedMain {
 
 	public static void main(String[] args) {
@@ -17,9 +18,19 @@ public class LetterboxedMain {
 			System.out.println("6-Search for User");
 			System.out.println("0-Exit");
 			System.out.print("What do you want to do?:");
-			int choice=scan.nextInt();
-			System.out.println();
-			switch (choice) {
+			int choice;
+
+			try{
+			   choice = scan.nextInt();
+			}
+
+			catch(InputMismatchException e){
+			   System.out.println("Please enter numbers only.");
+			   scan.nextLine();
+			   continue;
+			}
+
+			switch(choice){
 			
 			case (1):
 				System.out.print("Is it a Movie or a Serise? (answer with one word):");
@@ -124,16 +135,23 @@ public class LetterboxedMain {
 				System.out.println("User not found");
 				break;
 			}
-			System.out.print("Enter rating (1-10): ");
+			System.out.print("Enter rating: ");
 			int rating = scan.nextInt();
 			scan.nextLine();
 			
 			System.out.print("Enter comment: ");
 			String comment = scan.nextLine();
-			Review r = new Review(rating, comment, u);
-			u.addReview(r);
-			c.addReview(r);
-			System.out.println("Review added successfully");
+			try{
+				   Review r = new Review(rating,comment,u);
+
+				   u.addReview(r);
+				   c.addReview(r);
+
+				}
+
+				catch(InvalidRatingException e){
+				   System.out.println(e.getMessage());
+				}
 				break;
 			
 			case (3):
@@ -189,10 +207,10 @@ public class LetterboxedMain {
 			    }
 			    break;
 			
-			case (0):
+			case(0):
 				exit=false;
 				System.out.println("See you next time <3 ");
-			break;
+				break;
 			
 			default:
 				System.out.println("Wrong choise, Please try again");

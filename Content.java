@@ -17,8 +17,7 @@ public boolean matches(String keyword) {
 	return title.toLowerCase().contains(keyword.toLowerCase());}
 
 public void addReview(Review r) {
-	CReviewList[reviewCount] = new Review(r);
-	reviewCount++;
+		   CReviewList[reviewCount++]=new Review(r);
 }
 
 public void displayReviews() {

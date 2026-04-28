@@ -17,10 +17,18 @@ public User(String name) {
 public boolean matches(String keyword) {
 	return username.toLowerCase().contains(keyword.toLowerCase());}
 	
-public void addReview(Review r) {
-	UReviewList[reviewCount] = new Review(r);
-	reviewCount++;
-}
+	public void addReview(Review r) {
+
+	    try {
+	        UReviewList[reviewCount] = new Review(r);
+	        reviewCount++;
+
+	        System.out.println("Review added successfully");
+
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	        System.out.println("Cannot add review: review limit reached");
+	    }
+	}
 	
 public void displayReviews() {
 	for (int i =0;i<reviewCount;i++) {

@@ -13,7 +13,6 @@ public class Series extends Content {
 	    return averageReviewScore();		
 	}
 
-	
 	public String toString() {
 		return super.toString() +" ,Series [seasons=" + seasons + "]"+" ,Score"+calculateScore()+"/10";
 	}
